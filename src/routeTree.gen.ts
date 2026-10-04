@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AssetsRouteImport } from './routes/assets'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as FindingsIndexRouteImport } from './routes/findings.index'
+import { Route as FindingsIdRouteImport } from './routes/findings.$id'
+import { Route as FindingsNewRouteImport } from './routes/findings.new'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AssetsRoute = AssetsRouteImport.update({
+  id: '/assets',
+  path: '/assets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FindingsIndexRoute = FindingsIndexRouteImport.update({
+  id: '/findings/',
+  path: '/findings/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FindingsIdRoute = FindingsIdRouteImport.update({
+  id: '/findings/$id',
+  path: '/findings/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FindingsNewRoute = FindingsNewRouteImport.update({
+  id: '/findings/new',
+  path: '/findings/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/assets': typeof AssetsRoute
+  '/reports': typeof ReportsRoute
+  '/findings/$id': typeof FindingsIdRoute
+  '/findings/new': typeof FindingsNewRoute
+  '/findings/': typeof FindingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/assets': typeof AssetsRoute
+  '/reports': typeof ReportsRoute
+  '/findings/$id': typeof FindingsIdRoute
+  '/findings/new': typeof FindingsNewRoute
+  '/findings': typeof FindingsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/assets': typeof AssetsRoute
+  '/reports': typeof ReportsRoute
+  '/findings/$id': typeof FindingsIdRoute
+  '/findings/new': typeof FindingsNewRoute
+  '/findings/': typeof FindingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/assets'
+    | '/reports'
+    | '/findings/$id'
+    | '/findings/new'
+    | '/findings/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/assets'
+    | '/reports'
+    | '/findings/$id'
+    | '/findings/new'
+    | '/findings'
+  id:
+    | '__root__'
+    | '/'
+    | '/assets'
+    | '/reports'
+    | '/findings/$id'
+    | '/findings/new'
+    | '/findings/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AssetsRoute: typeof AssetsRoute
+  ReportsRoute: typeof ReportsRoute
+  FindingsIdRoute: typeof FindingsIdRoute
+  FindingsNewRoute: typeof FindingsNewRoute
+  FindingsIndexRoute: typeof FindingsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/assets': {
+      id: '/assets'
+      path: '/assets'
+      fullPath: '/assets'
+      preLoaderRoute: typeof AssetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/findings/': {
+      id: '/findings/'
+      path: '/findings'
+      fullPath: '/findings/'
+      preLoaderRoute: typeof FindingsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/findings/$id': {
+      id: '/findings/$id'
+      path: '/findings/$id'
+      fullPath: '/findings/$id'
+      preLoaderRoute: typeof FindingsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/findings/new': {
+      id: '/findings/new'
+      path: '/findings/new'
+      fullPath: '/findings/new'
+      preLoaderRoute: typeof FindingsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AssetsRoute: AssetsRoute,
+  ReportsRoute: ReportsRoute,
+  FindingsIdRoute: FindingsIdRoute,
+  FindingsNewRoute: FindingsNewRoute,
+  FindingsIndexRoute: FindingsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
