@@ -38,7 +38,7 @@ function AssetsPage() {
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     const r = schema.safeParse(form);
-    if (!r.success) return toast.error(r.error.issues[0].message);
+    if (!r.success) { toast.error(r.error.issues[0]?.message ?? "Invalid input"); return; }
     actions.saveAsset({ ...form, id: form.id || uid() });
     toast.success(form.id ? "Asset updated" : "Asset added");
     setForm(blank());

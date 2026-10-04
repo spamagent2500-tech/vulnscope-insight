@@ -47,7 +47,7 @@ function NewFinding() {
   const save = (e: React.FormEvent) => {
     e.preventDefault();
     const r = schema.safeParse(f);
-    if (!r.success) return toast.error(r.error.issues[0].message);
+    if (!r.success) { toast.error(r.error.issues[0]?.message ?? "Invalid input"); return; }
     const id = uid();
     actions.saveFinding({ ...f, id, cve: f.cve.toUpperCase().trim() });
     toast.success("Finding recorded");
