@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- App data (assets, findings, scope) lives in a browser-local store in src/lib/store.ts; why: no backend yet, swap for Lovable Cloud when multi-user is needed.
+- CVE data comes only from the NVD API via a server function; why: never invent CVE details, show a manual-verification warning on failure.
