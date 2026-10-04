@@ -91,7 +91,7 @@ function Dashboard() {
           <div className="h-56">
             <ResponsiveContainer>
               <PieChart>
-                <Pie data={sevData} dataKey="value" innerRadius={55} outerRadius={85} paddingAngle={2} stroke="none">
+                <Pie data={sevData} dataKey="value" innerRadius={55} outerRadius={85} paddingAngle={2} stroke="none" isAnimationActive={false}>
                   {sevData.map((d) => <Cell key={d.name} fill={sevColor[d.name]} />)}
                 </Pie>
                 <Tooltip contentStyle={{ background: "var(--card)", border: "1px solid var(--border)" }} />
@@ -129,7 +129,7 @@ function Dashboard() {
                 <XAxis dataKey="d" tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} />
                 <YAxis allowDecimals={false} width={24} tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} />
                 <Tooltip contentStyle={{ background: "var(--card)", border: "1px solid var(--border)" }} />
-                <Area dataKey="n" name="Findings" stroke="var(--primary)" fill="var(--primary)" fillOpacity={0.15} />
+                <Area dataKey="n" name="Findings" stroke="var(--primary)" fill="var(--primary)" fillOpacity={0.15} isAnimationActive={false} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
